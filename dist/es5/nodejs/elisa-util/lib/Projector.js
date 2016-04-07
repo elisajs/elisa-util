@@ -12,7 +12,9 @@
 
 
 
-    docs, fields) {
+
+
+    docs, fields) {var opts = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
       var rows;
 
 
@@ -22,6 +24,7 @@
           var row = {};
 
           if (typeof fields == "string") {
+            if (opts.top) row = doc[fields];else 
             prj(doc, fields, fields, row);} else 
           if (fields instanceof Array) {var _iteratorNormalCompletion2 = true;var _didIteratorError2 = false;var _iteratorError2 = undefined;try {
               for (var _iterator2 = fields[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {var field = _step2.value;prj(doc, field, field, row);}} catch (err) {_didIteratorError2 = true;_iteratorError2 = err;} finally {try {if (!_iteratorNormalCompletion2 && _iterator2.return) {_iterator2.return();}} finally {if (_didIteratorError2) {throw _iteratorError2;}}}} else 

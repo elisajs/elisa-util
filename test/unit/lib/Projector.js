@@ -30,6 +30,17 @@ suite.only("Projector", function() {
       ]);
     });
 
+    test("project(docs, field, {top})", function() {
+      project(docs, "x", {top: true}).must.be.eq([
+        1,
+        1,
+        2,
+        2,
+        3,
+        3
+      ]);
+    });
+
     test("project(docs, fields : array)", function() {
       project(docs, ["x", "y"]).must.be.eq([
         {x: 1, y: 1},
