@@ -7,7 +7,7 @@ const fin = justo.fin;
 const Projector = require("../../../dist/es5/nodejs/elisa-util").Projector;
 
 //suite
-suite.only("Projector", function() {
+suite("Projector", function() {
   const docs = [
     {x: 1, y: 1, z: 1},
     {x: 1, y: 2, z: 2},
@@ -19,6 +19,10 @@ suite.only("Projector", function() {
   const project = new Projector().project;
 
   suite("#project()", function() {
+    test("project(docs, {})", function() {
+      project(docs, {}).must.be.eq(docs);
+    });
+
     test("project(docs, field)", function() {
       project(docs, "x").must.be.eq([
         {x: 1},
