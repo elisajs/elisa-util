@@ -16,6 +16,10 @@ suite("API", function() {
     pkg.Projector.must.be.instanceOf(Function);
   });
 
+  test("Sorter", function() {
+    pkg.Sorter.must.be.instanceOf(Function);
+  });
+
   test("Updater", function() {
     pkg.Updater.must.be.instanceOf(Function);
   });
