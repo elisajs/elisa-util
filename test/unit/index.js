@@ -8,6 +8,10 @@ const pkg = require("../../dist/es5/nodejs/elisa-util");
 
 //suite
 suite("API", function() {
+  test("Checker", function() {
+    pkg.Checker.must.be.instanceOf(Function);
+  });
+
   test("Filter", function() {
     pkg.Filter.must.be.instanceOf(Function);
   });
