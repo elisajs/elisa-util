@@ -14,35 +14,59 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
     docs, fields) {var opts = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
-      var rows;
+      var res;
+
+
+      if (!fields) fields = {};
 
 
       if (Object.keys(fields).length === 0) {
-        rows = docs;} else 
+        res = docs;} else 
       {
-        rows = [];var _iteratorNormalCompletion = true;var _didIteratorError = false;var _iteratorError = undefined;try {
-
-          for (var _iterator = docs[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {var doc = _step.value;
-            var row = {};
-
-            if (typeof fields == "string") {
-              if (opts.top) row = doc[fields];else 
-              prj(doc, fields, fields, row);} else 
-            if (fields instanceof Array) {var _iteratorNormalCompletion2 = true;var _didIteratorError2 = false;var _iteratorError2 = undefined;try {
-                for (var _iterator2 = fields[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {var field = _step2.value;prj(doc, field, field, row);}} catch (err) {_didIteratorError2 = true;_iteratorError2 = err;} finally {try {if (!_iteratorNormalCompletion2 && _iterator2.return) {_iterator2.return();}} finally {if (_didIteratorError2) {throw _iteratorError2;}}}} else 
-            {
-              for (var _field in fields) {prj(doc, _field, fields[_field], row);}}
-
-
-            rows.push(row);}} catch (err) {_didIteratorError = true;_iteratorError = err;} finally {try {if (!_iteratorNormalCompletion && _iterator.return) {_iterator.return();}} finally {if (_didIteratorError) {throw _iteratorError;}}}}
+        if (docs instanceof Array) {
+          res = [];var _iteratorNormalCompletion = true;var _didIteratorError = false;var _iteratorError = undefined;try {
+            for (var _iterator = docs[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {var doc = _step.value;res.push(prjDoc(doc, fields, opts));}} catch (err) {_didIteratorError = true;_iteratorError = err;} finally {try {if (!_iteratorNormalCompletion && _iterator.return) {_iterator.return();}} finally {if (_didIteratorError) {throw _iteratorError;}}}} else 
+        {
+          res = prjDoc(docs, fields, opts);}}
 
 
 
 
-      return rows;} }]);return Projector;}();exports.default = Projector;
+      return res;} }]);return Projector;}();exports.default = Projector;
 
 
 
-function prj(doc, name, alias, row) {
+function prjDoc(doc, fields, opts) {
+  var res;
+
+
+  res = {};
+
+  if (typeof fields == "string") {
+    if (opts.top) res = doc[fields];else 
+    prjField(doc, fields, fields, res);} else 
+  if (fields instanceof Array) {var _iteratorNormalCompletion2 = true;var _didIteratorError2 = false;var _iteratorError2 = undefined;try {
+      for (var _iterator2 = fields[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {var field = _step2.value;prjField(doc, field, field, res);}} catch (err) {_didIteratorError2 = true;_iteratorError2 = err;} finally {try {if (!_iteratorNormalCompletion2 && _iterator2.return) {_iterator2.return();}} finally {if (_didIteratorError2) {throw _iteratorError2;}}}} else 
+  {
+    for (var _field in fields) {prjField(doc, _field, fields[_field], res);}}
+
+
+
+  return res;}
+
+
+function prjField(doc, name, alias, row) {
   if (doc.hasOwnProperty(name)) row[alias] = doc[name];}
