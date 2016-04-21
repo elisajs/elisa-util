@@ -10,7 +10,7 @@ const Updater = require("../../../dist/es5/nodejs/elisa-util").Updater;
 suite("Updater", function() {
   var updater;
 
-  init(function() {
+  init({title: "Create Updater instance"}, function() {
     updater = new Updater();
   });
 
