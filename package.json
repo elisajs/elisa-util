@@ -1,6 +1,6 @@
 {
   "name": "elisa-util",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Utilities for Elisa.js.",
   "homepage": "http://elisajs.org",
   "author": {
@@ -28,7 +28,9 @@
     "node": ">= 5.0.0",
     "npm": ">= 3.0.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "*"
+  },
   "peerDependencies": {},
   "devDependencies": {
     "babel-preset-es2015": "*",
