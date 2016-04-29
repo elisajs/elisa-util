@@ -37,6 +37,8 @@ Checker = function () {function Checker() {_classCallCheck(this, Checker);}_crea
               case "$nlike":case "$notLike":res = nlike(doc, field, value);break;
               case "$contain":res = contain(doc, field, value);break;
               case "$ncontain":case "$notContain":res = ncontain(doc, field, value);break;
+              case "$in":res = iin(doc, field, value);break;
+              case "$nin":case "$notIn":res = nin(doc, field, value);break;
               default:throw new Error("Invalid operator: '" + optor + "'.");}}}
 
 
@@ -97,3 +99,11 @@ function contain(doc, field, value) {
 
 function ncontain(doc, field, value) {
   return !contain(doc, field, value);}
+
+
+function iin(doc, field, value) {
+  return value.indexOf(doc[field]) >= 0;}
+
+
+function nin(doc, field, value) {
+  return !iin(doc, field, value);}

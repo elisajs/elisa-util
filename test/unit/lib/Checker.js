@@ -124,6 +124,26 @@ suite("Checker", function() {
     });
   });
 
+  suite("{field: {$in: value}}", function() {
+    test("true", function() {
+      check({x: "one", y: "two"}, {x: {$in: ["zero", "one", "two"]}}).must.be.eq(true);
+    });
+
+    test("false", function() {
+      check({x: "one", y: "two"}, {x: {$in: [0, 1, 2]}}).must.be.eq(false);
+    });
+  });
+
+  suite("{field: {$nin: value}}", function() {
+    test("true", function() {
+      check({x: "one", y: "two"}, {x: {$nin: [0, 1, 2]}}).must.be.eq(true);
+    });
+
+    test("false", function() {
+      check({x: "one", y: "two"}, {x: {$nin: ["zero", "one", "two"]}}).must.be.eq(false);
+    });
+  });
+
   suite("{field: {$between: [one, two]}}", function() {
     test("true", function() {
       check({x: 1, y: 2}, {x: {$between: [-3, 3]}}).must.be.eq(true);
